@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  nuxt_docker:
+
+services:
+    app:
+        container_name: nuxt
+        container: ghrc.io/valdeirpsr/nuxt:latest
+        environment:
+            APP_NAME: project
+
+            PACKAGE_MANAGER: yarn
+            NUXT_UI: tailwind
+            NUXT_TEST: jest
+            NUXT_MODE: universal
+            NUXT_TARGET: server
+            NUXT_CI: github-actions
+            GIT_USERNAME: valdeirpsr
+            NUXT_VCS: git
+
+            NUXT_FEATURES: axios,pwa,content
+            NUXT_LINTER: eslint,prettier,lintStaged,stylelint,commitlint
+            NUXT_DEVTOOLS: jsconfig.json,semantic-pull-requests,dependabot
+        volumes:
+            - ./src:/project
+        ports:
+            - 3000:3000
+        networks:
+            - nuxt_docker
+        command: ["yarn", "dev"]

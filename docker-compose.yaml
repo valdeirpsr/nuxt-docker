@@ -6,7 +6,7 @@ networks:
 services:
     app:
         container_name: nuxt
-        container: ghrc.io/valdeirpsr/nuxt:latest
+        container: ghcr.io/valdeirpsr/nuxt:latest
         environment:
             APP_NAME: project
 
